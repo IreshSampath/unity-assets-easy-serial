@@ -75,16 +75,16 @@ namespace GAG.EasySerial
                 try
                 {
                     _serialPort.WriteLine(command);
-                    EasyUIConsoleManager.Instance.EasyLog("Sent Command: " + command);
+                    EasyUIConsoleManager.Instance.EasyLog("Sent Serial Command: " + command);
                 }
                 catch (System.Exception e)
                 {
-                    EasyUIConsoleManager.Instance.EasyError("Failed to send command: " + e.Message);
+                    EasyUIConsoleManager.Instance.EasyError("Failed to send Serial command: " + e.Message);
                 }
             }
             else
             {
-                EasyUIConsoleManager.Instance.EasyWarning("Serial Port is not open. Cannot send command.");
+                EasyUIConsoleManager.Instance.EasyWarning("Serial Port is not open. Cannot send Serial command.");
             }
         }
 
@@ -97,7 +97,7 @@ namespace GAG.EasySerial
                     string message = _serialPort.ReadLine();
                     if (!string.IsNullOrEmpty(message))
                     {
-                        EasyUIConsoleManager.Instance.EasyLog("Received Command: " + message);
+                        EasyUIConsoleManager.Instance.EasyLog("Received Serial Command: " + message);
                         RaiseSerialReceived(message);
                     }
                 }
@@ -107,7 +107,7 @@ namespace GAG.EasySerial
                 }
                 catch (System.Exception e)
                 {
-                    EasyUIConsoleManager.Instance.EasyError("Failed to receive command: " + e.Message);
+                    EasyUIConsoleManager.Instance.EasyError("Failed to receive Serial command: " + e.Message);
                 }
             }
         }

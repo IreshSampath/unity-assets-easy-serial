@@ -1,5 +1,6 @@
 using GAG.EasyUIConsole;
 using System.IO;
+using TMPro;
 using UnityEngine;
 
 namespace GAG.EasySerial
@@ -16,6 +17,7 @@ namespace GAG.EasySerial
     {
         public EasySerialData EasySerialData;
 
+        [SerializeField] TMP_InputField _cmdInputField;
         void OnEnable()
         {
             EasySerialHandler.SerialReceived += OnSerialReceived;
@@ -53,11 +55,22 @@ namespace GAG.EasySerial
             }
             else
             {
-                EasySerialHandler.Instance.UpdateSerialSettings(EasySerialData.SerialConfig.Port, EasySerialData.SerialConfig.BaudRate);
+                UpdateSerialSettings(EasySerialData.SerialConfig.Port, EasySerialData.SerialConfig.BaudRate);
             }
         }
 
-        public void SendByIndex(int index)
+        public void UpdateSerialSettings(string port, int baudRate)
+        {
+            EasySerialHandler.Instance.UpdateSerialSettings(port, baudRate);
+        }
+
+        public void SendCustomCommand()
+        {
+            string command = _cmdInputField.text;
+            SendSerial(command);
+        }
+
+        public void SendJsonCommandByIndex(int index)
         {
             if (EasySerialData == null || EasySerialData.Commands == null) return;
             if (index < 0 || index >= EasySerialData.Commands.Send.Count) return;
@@ -65,7 +78,7 @@ namespace GAG.EasySerial
             SendSerial(EasySerialData.Commands.Send[index]);
         }
 
-        public void SendSerial(string command)
+        void SendSerial(string command)
         {
             EasySerial.SendSerial(command);
         }

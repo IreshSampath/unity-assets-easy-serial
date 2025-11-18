@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class EasySerialData
 {
     public SerialConfig SerialConfig = new SerialConfig();
-    public Commands Commands = new Commands();
+    public CommandSet Commands = new CommandSet();
 }
 
 [Serializable]
@@ -15,19 +16,8 @@ public class SerialConfig
 }
 
 [Serializable]
-public class Commands
+public class CommandSet
 {
-    public string Command0Send = "S0";
-    public string Command1Send = "S1";
-    public string Command2Send = "S2";
-    public string Command3Send = "S3";
-    public string Command4Send = "S4";
-    public string Command5Send = "S5";
-
-    public string Command0Receive = "R0";
-    public string Command1Receive = "R1";
-    public string Command2Receive = "R2";
-    public string Command3Receive = "R3";
-    public string Command4Receive = "R4";
-    public string Command5Receive = "R5";
+    public List<string> Send = new List<string>();
+    public List<string> Receive = new List<string>();
 }

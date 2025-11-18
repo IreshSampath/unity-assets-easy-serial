@@ -12,8 +12,8 @@ namespace GAG.EasySerial
 
         public static EasySerialHandler Instance;
 
-        public static event Action<string> OnCommandReceived;
-        public static void RaiseCommandReceived(string command) => OnCommandReceived?.Invoke(command);
+        public static event Action<string> SerialReceived;
+        public static void RaiseSerialReceived(string command) => SerialReceived?.Invoke(command);
 
         SerialPort _serialPort;
         bool _isInitialized = false;
@@ -35,7 +35,7 @@ namespace GAG.EasySerial
         {
             if (_isInitialized)
             {
-                ReceiveCommands();
+                ReceiveSerial();
             }
         }
 
@@ -68,7 +68,7 @@ namespace GAG.EasySerial
             }
         }
 
-        public void SendCommand(string command)
+        public void SendSerial(string command)
         {
             if (_serialPort != null && _serialPort.IsOpen)
             {
@@ -88,7 +88,7 @@ namespace GAG.EasySerial
             }
         }
 
-        void ReceiveCommands()
+        void ReceiveSerial()
         {
             if (_serialPort != null && _serialPort.IsOpen && _serialPort.BytesToRead > 0)
             {
@@ -98,7 +98,7 @@ namespace GAG.EasySerial
                     if (!string.IsNullOrEmpty(message))
                     {
                         EasyUIConsoleManager.Instance.EasyLog("Received Command: " + message);
-                        RaiseCommandReceived(message);
+                        RaiseSerialReceived(message);
                     }
                 }
                 catch (TimeoutException)

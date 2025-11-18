@@ -1,0 +1,34 @@
+﻿{
+  "name": "com.ireshsampath.unity-assets.easy-serial",
+  "version": "1.0.0",
+  "displayName": "EasySerial",
+  "description": "EasySerial is a lightweight Unity asset for simple, reliable serial communication. Easily read and write serial data for sensors, hardware interfaces, microcontrollers, and custom devices.\n\nNote: To use System.IO.Ports, change the API Compatibility Level to .NET Framework in Project Settings > Player.",
+  "unity": "2022.3",
+  "unityRelease": "0f1",
+  "documentationUrl": "https://github.com/IreshSampath/unity-assets-easy-serial/blob/main/README.md",
+  "changelogUrl": "https://github.com/IreshSampath/unity-assets-easy-serial/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/IreshSampath/unity-assets-easy-serial/blob/main/LICENSE",
+  "dependencies": {},
+  "samples": [
+    {
+      "displayName": "EasySerial Sample",
+      "description": "A sample scene demonstrating how to initialize, read, and write serial data using EasySerial.",
+      "path": "Samples~/Basic Serial Demo"
+    }
+  ],
+  "keywords": [
+    "serial",
+    "serial port",
+    "communication",
+    "hardware",
+    "arduino",
+    "microcontroller",
+    "sensors",
+    "easy serial"
+  ],
+  "author": {
+    "name": "Iresh Sampath",
+    "email": "ireshsampath@gmail.com",
+    "url": "https://www.linkedin.com/in/ireshsampath/"
+  }
+}

@@ -65,7 +65,7 @@ namespace GAG.EasySerial
         /// Loads serial configuration JSON from StreamingAssets.
         /// If the file is missing, default values will be used.
         /// </summary>
-        void LoadSerialData()
+        public void LoadSerialData()
         {
             string path = Path.Combine(Application.streamingAssetsPath, "Serial Configurations.json");
 

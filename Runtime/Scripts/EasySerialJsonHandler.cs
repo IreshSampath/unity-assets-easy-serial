@@ -1,4 +1,5 @@
 using GAG.EasyUIConsole;
+using System;
 using System.IO;
 using TMPro;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine;
 namespace GAG.EasySerial
 {
     /*
-     * EasySerialAppManager
+     * EasySerialJsonHandler
      * ---------------------
      * - Demonstrates how to integrate the EasySerial package.
      * - Loads serial configurations from a JSON file inside StreamingAssets.
@@ -21,9 +22,11 @@ namespace GAG.EasySerial
      * You can freely customize this class based on your project needs.
      */
 
-    public class EasySerialAppManager : MonoBehaviour
+    public class EasySerialJsonHandler : MonoBehaviour
     {
-        public static EasySerialAppManager Instance;
+        public static EasySerialJsonHandler Instance;
+
+
 
         // Holds serial port configuration and command sets.
         public EasySerialData EasySerialData;
@@ -147,24 +150,28 @@ namespace GAG.EasySerial
                 return;
             }
 
-            // Example: checking the first 3 receive commands
-            if (command == EasySerialData.Commands.Receive[0])
+            CheckAllReceivedCommands(command);
+        }
+
+        void CheckAllReceivedCommands(string command)
+        {
+            if (EasySerialData == null || EasySerialData.Commands == null) return;
+
+            for (int i = 0; i < EasySerialData.Commands.Receive.Count; i++)
             {
-                EasyUIConsoleManager.Instance.EasyLog("Serial 1st Received: " + command);
+                if (command == EasySerialData.Commands.Receive[i])
+                {
+                    EasyUIConsoleManager.Instance.EasyLog($"Matched Received Command at index {i}: {command}");
+                    EasySerial.RaiseReceivedSerialJsonChecked(i);
+                    return;
+                }
+                else
+                {
+                    // Optional: catch all
+                    EasySerial.RaiseReceivedSerialJsonChecked(-1);
+                }
             }
-            else if (command == EasySerialData.Commands.Receive[1])
-            {
-                EasyUIConsoleManager.Instance.EasyLog("Serial 2nd Received: " + command);
-            }
-            else if (command == EasySerialData.Commands.Receive[2])
-            {
-                EasyUIConsoleManager.Instance.EasyLog("Serial 3rd Received: " + command);
-            }
-            else
-            {
-                // Optional: catch all
-                EasyUIConsoleManager.Instance.EasyWarning("Unhandled Serial Received: " + command);
-            }
+            EasyUIConsoleManager.Instance.EasyWarning("Unhandled Serial Received: " + command);
         }
     }
 }

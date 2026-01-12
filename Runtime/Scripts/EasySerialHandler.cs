@@ -114,11 +114,14 @@ namespace GAG.EasySerial
 
         void OnApplicationQuit()
         {
-            if (_serialPort != null && _serialPort.IsOpen)
-            {
-                _serialPort.Close();
-                EasyUIConsoleManager.Instance.EasyWarning("Closed Serial Port");
-            }
+            //if (_serialPort != null && _serialPort.IsOpen)
+            //{
+            //    _serialPort.Close();
+            //    EasyUIConsoleManager.Instance.EasyWarning("Closed Serial Port");
+            //}
+#if !UNITY_EDITOR
+            Process.GetCurrentProcess().Kill();
+#endif
         }
     }
 }

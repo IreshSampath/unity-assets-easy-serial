@@ -11,7 +11,7 @@ namespace GAG.EasySerial.Editor
 
         const string FILE_NAME = "Serial Configurations.json";
 
-        [MenuItem("GAG/EasySerial/Serial Config Generator")]
+        [MenuItem("Tools/GAG/EasySerial/Serial Config Generator")]
         public static void Open()
         {
             GetWindow<EasySerialJsonGenerator>("EasySerial JSON Generator");

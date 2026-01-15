@@ -1,6 +1,7 @@
 using GAG.EasyUIConsole;
 using System;
 using System.IO.Ports;
+using System.Linq;
 using UnityEngine;
 
 namespace GAG.EasySerial
@@ -110,6 +111,22 @@ namespace GAG.EasySerial
                     EasyUIConsoleManager.Instance.EasyError("Failed to receive Serial command: " + e.Message);
                 }
             }
+        }
+
+        public void OpenConsole()
+        {
+            GameObject panel = Resources.FindObjectsOfTypeAll<GameObject>()
+    .FirstOrDefault(go => go.name == "Panel Console");
+
+            if (panel == null)
+            {
+                Debug.LogWarning(
+                    "Panel Console not found in hierarchy. Download and install EasyUIConsole package and import the EasyUIConsole prefab"
+                );
+                return;
+            }
+
+            panel.SetActive(true);
         }
 
         void OnApplicationQuit()

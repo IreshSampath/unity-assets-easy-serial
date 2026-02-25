@@ -1,6 +1,9 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
-using System.IO;
+using System.IO;        // ← REQUIRED for File, Directory, Path
+#if !NET_STANDARD_2_1
+using System.IO.Ports;  // ← ONLY for runtime scripts (NOT needed here)
+#endif
 using System.Linq;
 using UnityEditor;
 using UnityEditor.Build;

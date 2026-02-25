@@ -1,6 +1,6 @@
 {
-    "name": "EasySerialAssembly",
-    "rootNamespace": "",
+    "name": "GAG.EasySerial",
+    "rootNamespace": "GAG.EasySerial",
     "references": [
         "GUID:5b78b67a2644a1d4d9282148bf17b6c7",
         "GUID:6055be8ebefd69e48b49212b09b47b2f"

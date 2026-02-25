@@ -1,6 +1,6 @@
 ﻿{
   "name": "com.ireshsampath.unity-assets.easy-serial",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "displayName": "EasySerial",
   "description": "EasySerial is a lightweight Unity asset for simple, reliable serial communication. Easily read and write serial data for sensors, hardware interfaces, microcontrollers, and custom devices.\n\nNote: To use System.IO.Ports, change the API Compatibility Level to .NET Framework in Project Settings > Player.",
   "unity": "2022.3",
